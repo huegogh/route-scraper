@@ -1,5 +1,8 @@
+// Required stuff
 var scraper = require('table-scraper');
 
+
+//Code for Local Routes only
 let localRoutes = [
    [510, ["North", "South"], "Weekday"]]//,
 /*    [515, ["North", "South"], "Weekday"],
@@ -43,5 +46,13 @@ function scrape(routeNumber, direction, typeOfDay) {
          });
       });
 }
+// End of Local Routes
 
+
+
+
+
+
+
+// Call all code below here-----------------------------------------------------------
 localRoutes.forEach(route => scrape(...route));
