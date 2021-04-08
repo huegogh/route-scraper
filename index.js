@@ -4,25 +4,24 @@ var scraper = require('table-scraper');
 
 //Code for Local Routes only
 let localRoutes = [
-   [510, ["North", "South"], "Weekday"]]//,
-/*    [515, ["North", "South"], "Weekday"],
+   [510, ["North", "South"], "Weekday"],
+   [515, ["North", "South"], "Weekday"],
    [520, ["North", "South"], "Weekday"],
-   [525, ["North", "South"], "Weekday"],
-   [545, ["North", "South"], "Weekday"],
+   [525, ["East", "West"], "Weekday"],
+   [545, ["East", "West"], "Weekday"],
    [555, ["North", "South"], "Weekday"],
    [566, ["North", "South"], "Weekday"],
    [576, ["North", "South"], "Weekday"],
    [578, ["North", "South"], "Weekday"],
    [580, ["North", "South"], "Weekday"],
-   [710, ["North", "South"], "Weekday"],
-   [715, ["North", "South"], "Weekday"],
-   [720, ["North", "South"], "Weekday"],
-   [725, ["North", "South"], "Weekday"],
-   [745, ["North", "South"], "Weekday"]
-]; */
-// localRoutes run the same on weekends as they do on weekdays
+   [710, ["North", "South"], "Weekend"],
+   [715, ["East", "West"], "Weekend"],
+   [720, ["North", "South"], "Weekend"],
+   [725, ["East", "West"], "Weekend"],
+   [745, ["East", "West"], "Weekend"]
+];
 
-function scrape(routeNumber, direction, typeOfDay) {
+function scrapeLocal(routeNumber, direction, typeOfDay) {
    scraper
       .get(`https://sanjoaquinrtd.com/route-${routeNumber}/`)
       .then(pageTables => {
@@ -55,4 +54,4 @@ function scrape(routeNumber, direction, typeOfDay) {
 
 
 // Call all code below here-----------------------------------------------------------
-localRoutes.forEach(route => scrape(...route));
+localRoutes.forEach(route => scrapeLocal(...route));
