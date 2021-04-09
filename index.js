@@ -85,6 +85,47 @@ function scrapeBRTExpress(routeNumber, direction, typeOfDay) {
 
 // End of BRT Express Routes
 
+// Start of Hopper-Local Routes
+
+let hopperLocalRoutes = [
+   [1, ["Roundtrip"], ["Weekday"]],//,
+   // [2, ["East", "West","East","West"], ["Weekday","Weekday","Weekend","Weekend"]],
+   // [3, ["North", "South","North","South"], ["Weekday","Weekday","Weekend","Weekend"]],
+   // [4, ["East", "West","East","West"], ["Weekday","Weekday","Weekend","Weekend"]],
+   // [5, ["East", "West","East","West"], ["Weekday","Weekday","Weekend","Weekend"]],
+   // [6, ["East", "West","East","West"], ["Weekday","Weekday","Weekend","Weekend"]],
+   // [9, ["East", "West","East","West"], ["Weekday","Weekday","Weekend","Weekend"]],
+]; 
+
+function scrapeHopperLocal(routeNumber, direction, typeOfDay) {
+   scraper
+      .get(`https://sanjoaquinrtd.com/route-${routeNumber}/`)
+      .then(pageTables => {
+         direction.forEach(() => {
+            pageTables.push('');
+            console.log("test");
+         });
+         console.log("----Route #" + routeNumber + "----");
+         pageTables.forEach((table, index) => {
+            let trips = []
+            let stops = Object.keys(table[0]);
+            table.forEach(row => {
+               trips.push(Object.values(row));
+            });
+            let Route = {
+               "route": routeNumber,
+               "typeOfRoute": "Hopper-Local",
+               "typeOfDay": typeOfDay[index],
+               "direction": direction[index],
+               "stops": JSON.stringify(stops),
+               "trips": JSON.stringify(trips)
+            }
+            console.log(Route);
+         });
+      });
+}
+
+// End of Hopper-Local Routes
 
 //Start of Commuter Routes
 
@@ -123,7 +164,7 @@ function scrapeCommuter(routeNumber, direction, typeOfDay) {
 
 
 
-// Call all code below here-----------------------------------------------------------
+hopperLocalRoutes.forEach(route => scrapeHopperLocal(...route));
 brtExpressRoutes.forEach(route => scrapeBRTExpress(...route));
 localRoutes.forEach(route => scrapeLocal(...route));
 commuterRoutes.forEach(route => scrapeCommuter(...route));
