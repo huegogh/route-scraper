@@ -86,7 +86,45 @@ function scrapeBRTExpress(routeNumber, direction, typeOfDay) {
 // End of BRT Express Routes
 
 
+//Start of Commuter Routes
+
+let commuterRoutes = [
+   [150, ["West", "East","West", "East"], ["Weekday","Weekday","Weekend","Weekend"] ],
+   [163, ["North", "South"], ["Weekday","Weekday"] ],
+];
+
+function scrapeCommuter(routeNumber, direction, typeOfDay) {
+   scraper
+      .get(`https://sanjoaquinrtd.com/route-${routeNumber}/`)
+      .then(pageTables => {
+         let Tables = [];
+         direction.forEach((path, index) => Tables.push(pageTables[index]));
+         console.log("----Route #" + routeNumber + "----");
+         Tables.forEach((table, index) => {
+            let trips = []
+            let stops = Object.keys(table[0]);
+            table.forEach(row => {
+               trips.push(Object.values(row));
+            });
+            let Route = {
+               "route": routeNumber,
+               "typeOfRoute": "Commuter",
+               "typeOfDay": typeOfDay[index],
+               "direction": direction[index],
+               "stops": JSON.stringify(stops),
+               "trips": JSON.stringify(trips)
+            }
+            console.log(Route);
+         });
+      });
+}
+
+//End of Commuter Routes
+
+
 
 // Call all code below here-----------------------------------------------------------
 brtExpressRoutes.forEach(route => scrapeBRTExpress(...route));
 localRoutes.forEach(route => scrapeLocal(...route));
+commuterRoutes.forEach(route => scrapeCommuter(...route));
+
