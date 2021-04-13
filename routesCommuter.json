@@ -1,0 +1,50 @@
+{
+    "163NorthWeekday": {
+        "route": 163,
+        "typeOfRoute": "Commuter",
+        "typeOfDay": "Weekday",
+        "direction": "North",
+        "stops": "[\"Calvary First \\nChurch\\nKelly Dr.\",\"HTS\",\"Sampson/Hammer (Dollar Tree)\",\"Lodi Beckman\\nPark-n-Ride\",\"Q St. at 5th St.\",\"8th St. \\nat O St.\",\"8th St. \\nat K St.\",\"N St. at 10th St.\",\"N St. at 14th St.\",\"29th St. \\nat R St. \\nArrive\"]",
+        "trips": "[[\"5:30A\",\"5:37A\",\"5:50A\",\"6:05A\",\"6:45A\",\"6:49A\",\"6:50A\",\"6:52A\",\"6:54A\",\"7:04A\"],[\"6:20A\",\"6:27A\",\"6:40A\",\"6:55A\",\"7:45A\",\"7:48A\",\"7:49A\",\"7:52A\",\"7:54A\",\"8:04A\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"2:30P\",\"2:37P\",\"2:50P\",\"3:05P\",\"3:45P\",\"3:49P\",\"3:50P\",\"3:52P\",\"3:54P\",\"4:04P\"],[\"3:30P\",\"3:37P\",\"3:50P\",\"4:05P\",\"4:45P\",\"4:49P\",\"4:50P\",\"4:52P\",\"4:54P\",\"5:04P\"]]"
+    },
+    "163SouthWeekday": {
+        "route": 163,
+        "typeOfRoute": "Commuter",
+        "typeOfDay": "Weekday",
+        "direction": "South",
+        "stops": "[\"29th St. at R St. Depart\",\"Lodi Beckman Park-n-Ride\",\"Sampson & Hammer (Dollar Tree)\",\"HTS\",\"Calvary First Church \\nKelly Dr.\"]",
+        "trips": "[[\"7:05A\",\"7:45A\",\"8:00A\",\"8:13A\",\"8:20A *\"],[\"8:05A\",\"8:45A\",\"9:00A\",\"9:13A\",\"9:20A *\"],[\"\",\"\",\"\",\"\",\"\"],[\"4:05P\",\"4:55P\",\"5:10P\",\"5:23P\",\"5:30P *\"],[\"5:05P\",\"5:55P\",\"6:10P\",\"6:23P\",\"6:30P *\"]]"
+    },
+    "150WestWeekday": {
+        "route": 150,
+        "typeOfRoute": "Commuter",
+        "typeOfDay": "Weekday",
+        "direction": "West",
+        "stops": "[\"Downtown Transit Center\",\"Stockton & Michigan/Kirk Park & Ride\",\"Lathrop –\\nSave Mart\",\"Tracy Transit Station\",\"Dublin BART Station\\nArrive\"]",
+        "trips": "[[\"4:00A\",\"4:20A\",\"4:40A\",\"5:00A\",\"6:00A\"],[\"5:00A\",\"5:20A\",\"5:40A\",\"6:00A\",\"7:00A\"],[\"7:00A\",\"7:20A\",\"7:40A\",\"8:00A\",\"9:00A\"],[\"----\",\"----\",\"----\",\"----\",\"----\"],[\"3:00P\",\"3:20P\",\"3:40P\",\"4:00P\",\"5:00P\"]]"
+    },
+    "150EastWeekday": {
+        "route": 150,
+        "typeOfRoute": "Commuter",
+        "typeOfDay": "Weekday",
+        "direction": "East",
+        "stops": "[\"Dublin BART Station\\nDepart\",\"Tracy Transit Station\",\"Lathrop –\\nSave Mart\",\"Stockton & Michigan/Kirk\\nPark & Ride\",\"Downtown Transit Center\"]",
+        "trips": "[[\"6:15A\",\"7:05A\",\"7:25A\",\"----\",\"7:45A\"],[\"7:15A\",\"8:05A\",\"8:25A\",\"----\",\"8:45A\"],[\"9:15A\",\"10:05A\",\"10:25A\",\"----\",\"10:45A\"],[\"\",\"----\",\"----\",\"----\",\"----\"],[\"4:30P\",\"5:20P\",\"5:40P\",\"6:00P\",\"6:20P\"],[\"5:30P\",\"6:20P\",\"6:40P\",\"7:00P\",\"7:20P\"],[\"6:30P\",\"7:20P\",\"7:40P\",\"8:00P\",\"8:20P\"]]"
+    },
+    "150WestWeekend": {
+        "route": 150,
+        "typeOfRoute": "Commuter",
+        "typeOfDay": "Weekend",
+        "direction": "West",
+        "stops": "[\"DTC\",\"Tracy Transit Station\",\"Dublin BART Station\\nArrive\"]",
+        "trips": "[[\"7:00A\",\"7:35A\",\"8:25A\"],[\"8:25A\",\"9:00A\",\"9:50A\"],[\"10:30A\",\"11:05A\",\"11:55A\"],[\"4:00P\",\"4:35P\",\"5:25P\"],[\"8:00P\",\"8:35P\",\"9:25P\"]]"
+    },
+    "150EastWeekend": {
+        "route": 150,
+        "typeOfRoute": "Commuter",
+        "typeOfDay": "Weekend",
+        "direction": "East",
+        "stops": "[\"Dublin BART Station\\nDepart\",\"Tracy Transit Station\",\"DTC\"]",
+        "trips": "[[\"8:35A\",\"9:25A\",\"10:00A\"],[\"10:00A\",\"10:50A\",\"11:25A\"],[\"12:05P\",\"12:55P\",\"1:30P\"],[\"5:35P\",\"6:25P\",\"7:00P\"],[\"9:35P\",\"10:25P\",\"11:00P\"]]"
+    }
+}
