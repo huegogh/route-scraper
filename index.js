@@ -129,7 +129,7 @@ function postAllRoutes() {
    let allRoutesArray = localRoutes.concat(commuterRoutes, hopperCountyRoutes, hopperLocalRoutes, brtExpressRoutes);
 
    for (let i = 0; i < allRoutesArray.length; i++) {
-      fetch('http://localhost:5000/routes/add-path', {
+      fetch('http://sjrtd.azurewebsites.net/routes/add-path', {
          method: 'POST',
          headers: {
             'content-type': 'application/json'
