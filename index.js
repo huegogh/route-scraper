@@ -3,6 +3,7 @@ var scraper = require('table-scraper');
 const fetch = require('node-fetch');
 const fs = require('fs');
 
+
 //Code for Local Routes only
 let localRoutes = [
    [510, ["North", "South"], ["Weekday", "Weekday"], "Local"],
@@ -83,6 +84,7 @@ function scrapeSJRTDTable(routeNumber, direction, typeOfDay, typeOfRoute) {
                trips.push(Object.values(row));
             });
             let Route = {
+               "id": 0,
                "route": routeNumber,
                "typeOfRoute": typeOfRoute,
                "typeOfDay": typeOfDay[index],
@@ -99,31 +101,62 @@ function scrapeSJRTDTable(routeNumber, direction, typeOfDay, typeOfRoute) {
 }
 
 
-// * commuterRoutes.forEach(route => scrapeSJRTDTable(...route));
-// * localRoutes.forEach(route => scrapeSJRTDTable(...route));
-// * hopperCountyRoutes.forEach(route => scrapeSJRTDTable(...route));
-// * hopperLocalRoutes.forEach(route => scrapeSJRTDTable(...route));
-// * brtExpressRoutes.forEach(route => scrapeSJRTDTable(...route));
-let info = fs.readFileSync(`routesLocal.json`);
-info = JSON.parse(info);
+// ! commuterRoutes.forEach(route => scrapeSJRTDTable(...route));
+// ! localRoutes.forEach(route => scrapeSJRTDTable(...route));
+// ! hopperCountyRoutes.forEach(route => scrapeSJRTDTable(...route));
+// ! hopperLocalRoutes.forEach(route => scrapeSJRTDTable(...route));
+// ! brtExpressRoutes.forEach(route => scrapeSJRTDTable(...route));
 
-console.log(info);
-fetch('http://localhost:5000/routes/add', {
-   method: 'POST',
-   headers: {
-      'content-type': 'application/json'
-   },
-   body: JSON.stringify({
-      id:0,
-      number: 40,
-      type: "really cool"
-   })
-})
-   .then(response => {
-      console.log(response)
-   })
-   .catch(err => {
-      console.log(err)
-   })
+function translateRouteJSONIntoArray(fileName) {
+   let info = fs.readFileSync(fileName);
+   info = JSON.parse(info);
+   let arrayOfRoutes = [];
+   let index = 0;
+   for (const route in info) {
+      arrayOfRoutes[index] = info[route];
+      index++;
+   }
+   return arrayOfRoutes;
+}
+
+function postAllRoutes() {
+   let localRoutes = translateRouteJSONIntoArray("routesLocal.json");
+   let commuterRoutes = translateRouteJSONIntoArray("routesCommuter.json");
+   let hopperCountyRoutes = translateRouteJSONIntoArray("routesHopper-County.json");
+   let hopperLocalRoutes = translateRouteJSONIntoArray("routesHopper-Local.json");
+   let brtExpressRoutes = translateRouteJSONIntoArray("routesBRT-Express.json");
+
+   let allRoutesArray = localRoutes.concat(commuterRoutes, hopperCountyRoutes, hopperLocalRoutes, brtExpressRoutes);
+
+   for (let i = 0; i < allRoutesArray.length; i++) {
+      fetch('http://localhost:5000/routes/add-path', {
+         method: 'POST',
+         headers: {
+            'content-type': 'application/json'
+         },
+         body: JSON.stringify({
+            id: allRoutesArray[i].id,
+            route: allRoutesArray[i].route,
+            typeOfRoute: allRoutesArray[i].typeOfRoute,
+            typeOfDay: allRoutesArray[i].typeOfDay,
+            direction: allRoutesArray[i].direction,
+            stops: allRoutesArray[i].stops,
+            trips: allRoutesArray[i].trips
+         })
+      })
+         .then(response => {
+            console.log(response)
+         })
+         .catch(err => {
+            console.log(err)
+         })
+   }
+   console.log(allRoutesArray);
+
+}
+
+postAllRoutes();
+
+
 
 
